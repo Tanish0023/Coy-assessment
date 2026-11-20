@@ -1,8 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import { CURRENT_USER_ID, CURRENT_USER_EMAIL, CURRENT_USER_NAME, CURRENT_USER_PHOTO } from '../lib/constants';
 
 const prisma = new PrismaClient();
-
-const CURRENT_USER_ID = 'user_coy_current';
 
 const mockProfiles = [
   {
@@ -122,7 +121,7 @@ const mockProfiles = [
     cityOrCollege: 'USC • Film School',
     occupation: 'Cinematographer',
     bio: 'Obsessed with lighting, 16mm grain, and dramatic film scores. Ready to shoot a music video or grab midnight diner pancakes.',
-    photoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80',
     interests: ['Cinematography', 'Film', 'Diners', 'Screenwriting', 'Road Trips'],
     hasLikedCurrentUser: false,
   },
@@ -144,7 +143,7 @@ const mockProfiles = [
     cityOrCollege: 'University of Washington',
     occupation: 'Game Narrative Designer',
     bio: 'Crafting cozy fantasy quests and brewing floral teas. Tell me your favorite video game ending that broke your heart.',
-    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
     interests: ['Gaming', 'Worldbuilding', 'Tea', 'Cosplay', 'Graphic Novels'],
     hasLikedCurrentUser: true,
   },
@@ -166,7 +165,7 @@ const mockProfiles = [
     cityOrCollege: 'Pratt Institute',
     occupation: 'Industrial Designer',
     bio: '3D printing weird lamps and exploring industrial heritage sites. I notice chair proportions wherever I sit.',
-    photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80',
     interests: ['Industrial Design', '3D Printing', 'Modernism', 'Flea Markets', 'Minimalism'],
     hasLikedCurrentUser: true,
   },
@@ -177,7 +176,7 @@ const mockProfiles = [
     cityOrCollege: 'Georgetown University',
     occupation: 'Policy Analyst',
     bio: 'Policy nerd with a passion for jazz bass and trivia. Always looking for the most obscure bookstore in town.',
-    photoUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80',
     interests: ['Jazz Bass', 'History', 'Bookstores', 'Diplomacy', 'Chess'],
     hasLikedCurrentUser: false,
   },
@@ -199,7 +198,7 @@ const mockProfiles = [
     cityOrCollege: 'Trinity College Dublin',
     occupation: 'Documentary Producer',
     bio: 'Storytelling around the world. Big believer in wild swimming, dry humor, and long walks in misty rain.',
-    photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=800&q=80',
     interests: ['Documentaries', 'Wild Swimming', 'Writing', 'Folk Music', 'Literature'],
     hasLikedCurrentUser: false,
   },
@@ -210,7 +209,7 @@ const mockProfiles = [
     cityOrCollege: 'Stockholm University',
     occupation: 'Fashion Stylist & Archivist',
     bio: 'Vintage Scandinavian fashion curator. Loves Nordic noir series, cinnamon buns, and icy morning runs.',
-    photoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80',
     interests: ['Vintage Fashion', 'Baking', 'Scandi Design', 'Winter Sports', 'Cinema'],
     hasLikedCurrentUser: false,
   },
@@ -221,7 +220,7 @@ const mockProfiles = [
     cityOrCollege: 'Miami University',
     occupation: 'Marine Biologist',
     bio: 'Scuba diver and coral reef restoration tech. 90% of my clothes smell like saltwater. Let\'s go snorkeling or find key lime pie.',
-    photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=800&q=80',
     interests: ['Scuba Diving', 'Marine Life', 'Surfing', 'Salsa', 'Eco-Conservation'],
     hasLikedCurrentUser: false,
   },
@@ -232,7 +231,7 @@ const mockProfiles = [
     cityOrCollege: 'Tokyo University / RISD',
     occupation: 'Illustrator & Animator',
     bio: 'Sketching quirky characters on the subway. Loves ramen tasting, studio ghibli aesthetic, and city pop vinyl.',
-    photoUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1513956589380-bad6acb9b9d4?auto=format&fit=crop&w=800&q=80',
     interests: ['Animation', 'Illustration', 'Ramen', 'City Pop', 'Sketchbooks'],
     hasLikedCurrentUser: false,
   },
@@ -243,7 +242,7 @@ const mockProfiles = [
     cityOrCollege: 'Buenos Aires / Harvard',
     occupation: 'Economist & Writer',
     bio: 'Tango dancer, book lover, and espresso purist. Seeking someone who enjoys late dinner conversations that stretch past midnight.',
-    photoUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
     interests: ['Tango', 'Economics', 'Espresso', 'Latin Literature', 'Travel'],
     hasLikedCurrentUser: false,
   },
@@ -254,7 +253,7 @@ const mockProfiles = [
     cityOrCollege: 'Oxford University',
     occupation: 'Antique Horologist',
     bio: 'Restoring mechanical watches from the 1800s. I appreciate slow living, handwritten letters, and tweed jackets.',
-    photoUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&w=800&q=80',
     interests: ['Watches', 'History', 'Antiques', 'Rowing', 'Classic Rock'],
     hasLikedCurrentUser: false,
   },
@@ -265,7 +264,7 @@ const mockProfiles = [
     cityOrCollege: 'Beirut / Parsons School of Design',
     occupation: 'Textile Artisan',
     bio: 'Weaving modern tapestries with natural plant dyes. Always up for mezze brunches and wandering modern art fairs.',
-    photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?auto=format&fit=crop&w=800&q=80',
     interests: ['Textiles', 'Weaving', 'Natural Dyes', 'Mediterranean Food', 'Art Fairs'],
     hasLikedCurrentUser: false,
   },
@@ -276,7 +275,7 @@ const mockProfiles = [
     cityOrCollege: 'Rio de Janeiro / San Diego',
     occupation: 'Surf Instructor & Physical Therapist',
     bio: 'Catching waves before dawn, helping athletes recover by noon, and playing acoustic guitar at sunset bonfires.',
-    photoUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
     interests: ['Surfing', 'Acoustic Guitar', 'Wellness', 'Beach Volleyball', 'Sunset Chasing'],
     hasLikedCurrentUser: false,
   },
@@ -287,7 +286,7 @@ const mockProfiles = [
     cityOrCollege: 'UT Austin',
     occupation: 'Music Producer & DJ',
     bio: 'Late night studio sessions and daytime vintage synthesizers. If you like synth-pop and spicy queso, we\'ll get along.',
-    photoUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1534751516642-a1714f5a549a?auto=format&fit=crop&w=800&q=80',
     interests: ['DJing', 'Synthesizers', 'Live Shows', 'Tex-Mex', 'Roller Skating'],
     hasLikedCurrentUser: false,
   },
@@ -298,7 +297,7 @@ const mockProfiles = [
     cityOrCollege: 'Cambridge, MA',
     occupation: 'Astrophysics PhD Candidate',
     bio: 'Analyzing exoplanet atmospheric spectra. I have telescope keys and an endless supply of stellar facts for stargazing dates.',
-    photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=800&q=80',
     interests: ['Astrophysics', 'Stargazing', 'Telescopes', 'Board Games', 'Coffee Roasting'],
     hasLikedCurrentUser: false,
   },
@@ -309,7 +308,7 @@ const mockProfiles = [
     cityOrCollege: 'Seoul National University / Cornell',
     occupation: 'Fermentation Specialist',
     bio: 'Kombucha brewer, sourdough enthusiast, and food biochemist. Let me introduce you to foods that taste magical and boost gut health.',
-    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1526510706891-c452f08dbb01?auto=format&fit=crop&w=800&q=80',
     interests: ['Fermentation', 'Biochemistry', 'Cooking', 'Gardening', 'K-Indie'],
     hasLikedCurrentUser: false,
   },
@@ -320,7 +319,7 @@ const mockProfiles = [
     cityOrCollege: 'Paris / McGill',
     occupation: 'Film Critic & Essayist',
     bio: 'Analyzing nouvelle vague films and sipping black coffee at corner cafés. I hold strong opinions on popcorn vs candy at the cinema.',
-    photoUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1519764622345-23439dd774f7?auto=format&fit=crop&w=800&q=80',
     interests: ['Film Noir', 'Essays', 'Café Hopping', 'Vintage Posters', 'Philosophy'],
     hasLikedCurrentUser: false,
   },
@@ -331,7 +330,7 @@ const mockProfiles = [
     cityOrCollege: 'Penn State University',
     occupation: 'Track & Field Athlete & Bioethics',
     bio: 'Hurdler on the track, thinker in the bioethics lab. High energy, loves afrobeat concerts and post-workout smoothies.',
-    photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=800&q=80',
     interests: ['Track & Field', 'Afrobeats', 'Smoothies', 'Bioethics', 'Podcasts'],
     hasLikedCurrentUser: false,
   },
@@ -342,7 +341,7 @@ const mockProfiles = [
     cityOrCollege: 'University of Edinburgh',
     occupation: 'Botanist & Florist',
     bio: 'Surrounded by orchids and rare ferns. I can revive any dying houseplant and will bring you wildflowers just because.',
-    photoUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1517462964-21fdcec3f25b?auto=format&fit=crop&w=800&q=80',
     interests: ['Botany', 'Plant Propagation', 'Hiking', 'Wildflowers', 'Acoustic Folk'],
     hasLikedCurrentUser: false,
   },
@@ -353,7 +352,7 @@ const mockProfiles = [
     cityOrCollege: 'London / Central Saint Martins',
     occupation: 'Ceramic Sculptor',
     bio: 'Clay-covered apron is my signature look. Let\'s get dirty on the pottery wheel and grab fish & chips by the canal.',
-    photoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80',
     interests: ['Pottery', 'Sculpture', 'Street Markets', 'Canal Walks', 'Vintage Records'],
     hasLikedCurrentUser: false,
   },
@@ -372,15 +371,15 @@ async function main() {
   const currentUser = await prisma.user.create({
     data: {
       id: CURRENT_USER_ID,
-      email: 'alex@coy.app',
+      email: CURRENT_USER_EMAIL,
       profile: {
         create: {
-          name: 'Alex Rivera',
+          name: CURRENT_USER_NAME,
           age: 23,
           cityOrCollege: 'New York University',
           occupation: 'Product Engineer',
           bio: 'Building things for the web, seeking the best espresso martini in NYC, and training for a half-marathon. Always down for good food and live music.',
-          photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+          photoUrl: CURRENT_USER_PHOTO,
           interests: JSON.stringify(['Tech', 'Running', 'Live Music', 'Coffee', 'Cocktails']),
           verified: true,
         },
@@ -388,7 +387,7 @@ async function main() {
     },
   });
 
-  console.log(`✅ Logged-in user seeded: ${currentUser.id}`);
+  console.log(`✅ Logged-in user seeded: ${currentUser.id} (${CURRENT_USER_NAME})`);
 
   // 2. Create Candidate Profiles
   let seededCount = 0;

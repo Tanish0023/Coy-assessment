@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Sparkles, MessageCircle, ArrowRight, X } from 'lucide-react';
 import { MatchItem } from '@/types';
+import { CURRENT_USER_PHOTO } from '@/lib/constants';
 import Image from 'next/image';
 
 interface MatchModalProps {
@@ -15,7 +16,7 @@ interface MatchModalProps {
 
 export const MatchModal: React.FC<MatchModalProps> = ({
   match,
-  currentUserPhoto = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+  currentUserPhoto = CURRENT_USER_PHOTO,
   onClose,
   onViewMatches,
 }) => {
@@ -73,54 +74,66 @@ export const MatchModal: React.FC<MatchModalProps> = ({
             You and <span className="text-white font-semibold">{partner.name}</span> liked each other.
           </p>
 
-          {/* Interlocking Profile Photos with Heart Accent */}
-          <div className="relative flex items-center justify-center my-4 z-10 w-full h-36">
-            {/* Current User Photo (Left) */}
-            <motion.div
-              initial={{ x: -60, opacity: 0, rotate: -15 }}
-              animate={{ x: -30, opacity: 1, rotate: -8 }}
-              transition={{ delay: 0.25, type: 'spring', damping: 15 }}
-              className="relative w-28 h-28 rounded-full border-4 border-rose-500 shadow-xl overflow-hidden"
-            >
-              <Image
-                src={currentUserPhoto}
-                alt="You"
-                fill
-                sizes="112px"
-                className="object-cover"
-              />
-            </motion.div>
+          {/* Interlocking Profile Photos with Heart Accent & Name Badges */}
+          <div className="relative flex flex-col items-center justify-center my-4 z-10 w-full">
+            <div className="relative flex items-center justify-center w-full h-32">
+              {/* Current User Photo (Left) */}
+              <motion.div
+                initial={{ x: -60, opacity: 0, rotate: -15 }}
+                animate={{ x: -30, opacity: 1, rotate: -8 }}
+                transition={{ delay: 0.25, type: 'spring', damping: 15 }}
+                className="relative w-28 h-28 rounded-full border-4 border-rose-500 shadow-xl overflow-hidden bg-neutral-800"
+              >
+                <Image
+                  src={currentUserPhoto}
+                  alt="You"
+                  fill
+                  sizes="112px"
+                  className="object-cover"
+                />
+              </motion.div>
 
-            {/* Pulsing Heart Center Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: [1, 1.25, 1] }}
-              transition={{
-                delay: 0.45,
-                repeat: Infinity,
-                repeatDelay: 1.5,
-                duration: 1,
-              }}
-              className="absolute z-20 w-12 h-12 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 flex items-center justify-center shadow-lg border-2 border-white/80"
-            >
-              <Heart className="w-6 h-6 fill-white text-white" />
-            </motion.div>
+              {/* Pulsing Heart Center Badge */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: [1, 1.25, 1] }}
+                transition={{
+                  delay: 0.45,
+                  repeat: Infinity,
+                  repeatDelay: 1.5,
+                  duration: 1,
+                }}
+                className="absolute z-20 w-12 h-12 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 flex items-center justify-center shadow-lg border-2 border-white/80"
+              >
+                <Heart className="w-6 h-6 fill-white text-white" />
+              </motion.div>
 
-            {/* Matched Partner Photo (Right) */}
-            <motion.div
-              initial={{ x: 60, opacity: 0, rotate: 15 }}
-              animate={{ x: 30, opacity: 1, rotate: 8 }}
-              transition={{ delay: 0.35, type: 'spring', damping: 15 }}
-              className="relative w-28 h-28 rounded-full border-4 border-pink-500 shadow-xl overflow-hidden"
-            >
-              <Image
-                src={partner.photoUrl}
-                alt={partner.name}
-                fill
-                sizes="112px"
-                className="object-cover"
-              />
-            </motion.div>
+              {/* Matched Partner Photo (Right) */}
+              <motion.div
+                initial={{ x: 60, opacity: 0, rotate: 15 }}
+                animate={{ x: 30, opacity: 1, rotate: 8 }}
+                transition={{ delay: 0.35, type: 'spring', damping: 15 }}
+                className="relative w-28 h-28 rounded-full border-4 border-pink-500 shadow-xl overflow-hidden bg-neutral-800"
+              >
+                <Image
+                  src={partner.photoUrl}
+                  alt={partner.name}
+                  fill
+                  sizes="112px"
+                  className="object-cover"
+                />
+              </motion.div>
+            </div>
+
+            {/* Labels indicating You and Partner */}
+            <div className="flex items-center justify-between w-full max-w-[260px] px-2 mt-2">
+              <span className="text-xs font-semibold text-rose-400 bg-rose-500/15 border border-rose-500/30 px-2.5 py-0.5 rounded-full">
+                You (Alex)
+              </span>
+              <span className="text-xs font-semibold text-pink-400 bg-pink-500/15 border border-pink-500/30 px-2.5 py-0.5 rounded-full">
+                {partner.name.split(' ')[0]}
+              </span>
+            </div>
           </div>
 
           {/* Match Location & Detail Snippet */}
