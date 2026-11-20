@@ -6,6 +6,8 @@ import { TopHeader } from '@/components/navigation/TopHeader';
 import { BottomNav } from '@/components/navigation/BottomNav';
 import { CardStack } from '@/components/discover/CardStack';
 import { HomePlaceholder } from '@/components/home/HomePlaceholder';
+import { MatchesView } from '@/components/matches/MatchesView';
+import { MatchModal } from '@/components/matches/MatchModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('discover');
@@ -138,11 +140,10 @@ export default function App() {
         )}
 
         {activeTab === 'matches' && (
-          <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-            <p className="text-neutral-400 text-sm">
-              Matches View (Implemented in Milestone 4)
-            </p>
-          </div>
+          <MatchesView
+            matches={matches}
+            onGoToDiscover={() => setActiveTab('discover')}
+          />
         )}
       </main>
 
@@ -152,6 +153,18 @@ export default function App() {
         onTabChange={(tab) => setActiveTab(tab)}
         matchesCount={matches.length}
       />
+
+      {/* Match Celebration Screen / Modal */}
+      {activeMatch && (
+        <MatchModal
+          match={activeMatch}
+          onClose={() => setActiveMatch(null)}
+          onViewMatches={() => {
+            setActiveMatch(null);
+            setActiveTab('matches');
+          }}
+        />
+      )}
     </div>
   );
 }

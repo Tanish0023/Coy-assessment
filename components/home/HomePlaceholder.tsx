@@ -17,10 +17,6 @@ export const HomePlaceholder: React.FC<HomePlaceholderProps> = ({
       </div>
 
       <h2 className="text-xl font-bold text-white mb-2">Home</h2>
-      <p className="text-neutral-400 text-sm max-w-xs mb-6 leading-relaxed">
-        This is the placeholder Home tab as specified in the assignment. Head over to Discover to explore candidate profiles.
-      </p>
-
       <button
         type="button"
         onClick={onGoToDiscover}
