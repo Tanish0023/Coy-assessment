@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { recordSwipe, SwipeAction } from '@/lib/matching';
 import { CURRENT_USER_ID } from '@/lib/constants';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
+
   try {
     const body = await request.json();
     const { profileId, action } = body;
