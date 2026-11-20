@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--no-experimental-strip-types' next dev",
-    "build": "NODE_OPTIONS='--no-experimental-strip-types' next build",
+    "prebuild": "node -e \"if (!require('fs').existsSync('.env')) require('fs').writeFileSync('.env', 'DATABASE_URL=\\\"file:./dev.db\\\"\\n')\" && prisma generate && prisma db push && tsx prisma/seed.ts",
+    "build": "node -e \"if (!require('fs').existsSync('.env')) require('fs').writeFileSync('.env', 'DATABASE_URL=\\\"file:./dev.db\\\"\\n')\" && prisma generate && prisma db push && tsx prisma/seed.ts && NODE_OPTIONS='--no-experimental-strip-types' next build",
     "start": "NODE_OPTIONS='--no-experimental-strip-types' next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "test:api": "tsx tests/api-test.ts"
