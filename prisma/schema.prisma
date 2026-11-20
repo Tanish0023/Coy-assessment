@@ -1,0 +1,68 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profile Profile?
+
+  swipesGiven    Swipe[] @relation("Swiper")
+  swipesReceived Swipe[] @relation("Swiped")
+
+  matchesAsUser1 Match[] @relation("User1Matches")
+  matchesAsUser2 Match[] @relation("User2Matches")
+}
+
+model Profile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
+  age           Int
+  photoUrl      String
+  bio           String
+  cityOrCollege String
+  occupation    String?
+  interests     String   // Stored as JSON stringified array of string tags
+  verified      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Swipe {
+  id        String   @id @default(cuid())
+  swiperId  String
+  swipedId  String
+  action    String   // "LIKE" | "PASS"
+  createdAt DateTime @default(now())
+
+  swiper User @relation("Swiper", fields: [swiperId], references: [id], onDelete: Cascade)
+  swiped User @relation("Swiped", fields: [swipedId], references: [id], onDelete: Cascade)
+
+  @@unique([swiperId, swipedId])
+  @@index([swiperId])
+  @@index([swipedId, action])
+}
+
+model Match {
+  id        String   @id @default(cuid())
+  user1Id   String
+  user2Id   String
+  createdAt DateTime @default(now())
+
+  user1 User @relation("User1Matches", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2 User @relation("User2Matches", fields: [user2Id], references: [id], onDelete: Cascade)
+
+  @@unique([user1Id, user2Id])
+  @@index([user1Id])
+  @@index([user2Id])
+}
